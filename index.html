@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis 15 Años - Danna</title>
+
+    <!-- Metaetiquetas para la vista previa en redes sociales (Open Graph) -->
+    <meta property="og:title" content="Mis 15 Años - Danna">
+    <meta property="og:description" content="¡Estás invitado a celebrar una noche mágica bajo el mar!">
+    <meta property="og:image" content="ufotable-danna.png">
+    <meta property="og:type" content="website">
+    <!-- Cuando publiques la web, reemplaza la siguiente línea con la URL final -->
+    <meta property="og:url" content="https://687409696f68610ca71257ad--tarjetadanna.netlify.app/tarjeta-danna-full-def.html">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Estilos personalizados con fondo animado y elementos del mar */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #333;
+            overflow-x: hidden;
+            background-color: #f0e9d6;
+            /* Color de la arena como base */
+        }
+
+        .ocean-background {
+            background: linear-gradient(135deg, #4ca1af, #89cff0, #63d4d4, #b2ffff);
+            background-size: 400% 400%;
+            animation: gradientAnimation 25s ease infinite;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            /* Ocupa la altura de la primera pantalla */
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Contenedor para todos los elementos flotantes */
+        .floating-elements .element {
+            position: absolute;
+            bottom: -150px;
+            /* Inician fuera de la pantalla */
+            opacity: 0;
+            animation: rise 20s infinite ease-in;
+        }
+
+        .floating-elements .element svg {
+            width: 25px;
+            height: 25px;
+            fill: rgba(255, 255, 255, 0.35);
+        }
+
+        /* Animación para burbujas y elementos marinos */
+        @keyframes rise {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-120vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Asignación aleatoria de estilos para cada elemento */
+        .floating-elements .element:nth-child(1) {
+            left: 10%;
+            animation-duration: 15s;
+            animation-delay: 0s;
+            transform: scale(0.8);
+        }
+
+        .floating-elements .element:nth-child(2) {
+            left: 20%;
+            animation-duration: 9s;
+            animation-delay: 2s;
+            transform: scale(1.2);
+        }
+
+        .floating-elements .element:nth-child(3) {
+            left: 30%;
+            animation-duration: 18s;
+            animation-delay: 5s;
+            transform: scale(0.7);
+        }
+
+        .floating-elements .element:nth-child(4) {
+            left: 40%;
+            animation-duration: 12s;
+            animation-delay: 7s;
+            transform: scale(1.1);
+        }
+
+        .floating-elements .element:nth-child(5) {
+            left: 55%;
+            animation-duration: 20s;
+            animation-delay: 1s;
+            transform: scale(0.9);
+        }
+
+        .floating-elements .element:nth-child(6) {
+            left: 70%;
+            animation-duration: 13s;
+            animation-delay: 3s;
+            transform: scale(1.3);
+        }
+
+        .floating-elements .element:nth-child(7) {
+            left: 85%;
+            animation-duration: 16s;
+            animation-delay: 6s;
+            transform: scale(0.6);
+        }
+
+        .floating-elements .element:nth-child(8) {
+            left: 90%;
+            animation-duration: 10s;
+            animation-delay: 8s;
+            transform: scale(1.0);
+        }
+
+
+        .font-dancing {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .card {
+            background-color: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+        }
+
+        .countdown-box {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #046a6d;
+        }
+
+        .btn {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn-main {
+            background-color: #0d9488;
+            color: white;
+            box-shadow: 0 4px 15px rgba(13, 148, 136, 0.3);
+        }
+
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .loader {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #ffffff;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .content-bg {
+            background-color: #f0e9d6;
+            position: relative;
+        }
+
+        .h-fill {
+            height: 150%;
+        }
+
+        /* Contenedor de las olas animadas */
+        .waves-container {
+            position: relative;
+            width: 100%;
+            height: 15vh;
+            margin-bottom: -7px;
+            /* Evita espacios en blanco */
+        }
+
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background-size: 1000px 100px;
+        }
+
+        .wave.wave1 {
+            background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/85486/wave.svg');
+            animation: wave-move 15s linear infinite;
+            opacity: 1;
+            fill: #f0e9d6;
+        }
+
+        .wave.wave2 {
+            background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/85486/wave.svg');
+            animation: wave-move-reversed 20s linear infinite;
+            opacity: 0.5;
+        }
+
+        @keyframes wave-move {
+            0% {
+                background-position-x: 0;
+            }
+
+            100% {
+                background-position-x: 1000px;
+            }
+        }
+
+        @keyframes wave-move-reversed {
+            0% {
+                background-position-x: 1000px;
+            }
+
+            100% {
+                background-position-x: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Hero Section -->
+    <header class="min-h-screen flex flex-col items-center justify-center text-center p-6 relative">
+        <div class="ocean-background">
+            <div class="floating-elements">
+                <div class="element"><svg viewBox="0 0 24 24">
+                        <path
+                            d="M12,17.27L18.18,21L17,14.64L22,9.73L15.63,8.82L12,3L8.37,8.82L2,9.73L7,14.64L5.82,21L12,17.27Z" />
+                    </svg></div>
+                <div class="element"><svg viewBox="0 0 512 512">
+                        <path
+                            d="M437.3,133.3c-32-32-83.9-32-115.9,0L256,198.7l-65.4-65.4c-32-32-83.9-32-115.9,0s-32,83.9,0,115.9L140.1,256l-65.4,65.4c-32,32-32,83.9,0,115.9s83.9,32,115.9,0L256,371.9l65.4,65.4c32,32,83.9,32,115.9,0s32-83.9,0-115.9L371.9,256l65.4-65.4C469.3,217.2,469.3,165.3,437.3,133.3z" />
+                    </svg></div>
+                <div class="element"><svg viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10"></circle>
+                    </svg></div>
+                <div class="element"><svg viewBox="0 0 24 24">
+                        <path
+                            d="M12,17.27L18.18,21L17,14.64L22,9.73L15.63,8.82L12,3L8.37,8.82L2,9.73L7,14.64L5.82,21L12,17.27Z" />
+                    </svg></div>
+                <div class="element"><svg viewBox="0 0 512 512">
+                        <path
+                            d="M128,128c0-53,43-96,96-96s96,43,96,96s-43,96-96,96S128,181,128,128z M32,128c0,70.7,57.3,128,128,128s128-57.3,128-128S220.7,0,160,0C60.8,0,0,76.8,0,160c0,13.5,1.7,26.6,4.8,39.2L2.1,204.1c-2.8,8.5,0.7,17.6,8.5,20.4l128,42.7c8.5,2.8,17.6-0.7,20.4-8.5l42.7-128c2.8-8.5-0.7-17.6-8.5-20.4L164.5,99.2C147.2,96.9,132.8,96,128,96z" />
+                    </svg></div>
+                <div class="element"><svg viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10"></circle>
+                    </svg></div>
+                <div class="element"><svg viewBox="0 0 512 512">
+                        <path
+                            d="M437.3,133.3c-32-32-83.9-32-115.9,0L256,198.7l-65.4-65.4c-32-32-83.9-32-115.9,0s-32,83.9,0,115.9L140.1,256l-65.4,65.4c-32,32-32,83.9,0,115.9s83.9,32,115.9,0L256,371.9l65.4,65.4c32,32,83.9,32,115.9,0s32-83.9,0-115.9L371.9,256l65.4-65.4C469.3,217.2,469.3,165.3,437.3,133.3z" />
+                    </svg></div>
+                <div class="element"><svg viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10"></circle>
+                    </svg></div>
+            </div>
+            <div class="waves-container absolute bottom-0 left-0 w-full">
+                <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                    <defs>
+                        <path id="gentle-wave"
+                            d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                    </defs>
+                    <g class="parallax">
+                        <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(240,233,214,0.7)" />
+                        <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(240,233,214,0.5)" />
+                        <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(240,233,214,0.3)" />
+                        <use xlink:href="#gentle-wave" x="48" y="7" fill="#f0e9d6" />
+                    </g>
+                </svg>
+            </div>
+        </div>
+
+        <div class="relative z-10">
+            <div class="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white shadow-2xl mb-6"
+                style="margin: auto;">
+                <img src="ufotable-danna.png" alt="Ilustración de Danna"
+                    class="w-full h-fill object-cover">
+            </div>
+            <h1 class="font-dancing text-6xl md:text-8xl text-white" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.3);">
+                Danna</h1>
+            <p class="text-xl md:text-2xl mt-2 text-white/90 tracking-widest"
+                style="text-shadow: 1px 1px 4px rgba(0,0,0,0.3);">MIS 15 AÑOS</p>
+            <div class="w-24 h-0.5 bg-white/80 mx-auto my-8"></div>
+            <p class="max-w-xl mx-auto text-white/90 text-base md:text-lg italic"
+                style="text-shadow: 1px 1px 4px rgba(0,0,0,0.3);">
+                "Que cada ola traiga alegría y cada estrella ilumine este nuevo capítulo que comienza en mi vida."
+            </p>
+        </div>
+    </header>
+
+    <main class="content-bg">
+        <div class="container mx-auto px-6 py-16 space-y-20 relative">
+            <!-- Countdown Section -->
+            <section class="text-center fade-in-section relative z-10">
+                <h2 class="font-dancing text-4xl md:text-5xl text-teal-700 mb-4">La Gran Noche se Acerca</h2>
+                <div id="countdown" class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 max-w-2xl mx-auto mt-8">
+                    <div class="countdown-box p-6 rounded-2xl shadow-lg"><span id="days"
+                            class="text-4xl lg:text-5xl font-bold">00</span><span
+                            class="block text-sm opacity-80 mt-1">Días</span></div>
+                    <div class="countdown-box p-6 rounded-2xl shadow-lg"><span id="hours"
+                            class="text-4xl lg:text-5xl font-bold">00</span><span
+                            class="block text-sm opacity-80 mt-1">Horas</span></div>
+                    <div class="countdown-box p-6 rounded-2xl shadow-lg"><span id="minutes"
+                            class="text-4xl lg:text-5xl font-bold">00</span><span
+                            class="block text-sm opacity-80 mt-1">Minutos</span></div>
+                    <div class="countdown-box p-6 rounded-2xl shadow-lg"><span id="seconds"
+                            class="text-4xl lg:text-5xl font-bold">00</span><span
+                            class="block text-sm opacity-80 mt-1">Segundos</span></div>
+                </div>
+            </section>
+
+            <!-- Event Details Section -->
+            <section class="card p-8 md:p-10 rounded-2xl fade-in-section relative z-10">
+                <h2 class="font-dancing text-4xl md:text-5xl text-teal-700 mb-8 text-center">Te invito a celebrar</h2>
+                <div class="grid md:grid-cols-3 gap-8 text-center">
+                    <div>
+                        <div class="bg-white p-4 rounded-full shadow-md mb-3 inline-block"><svg
+                                xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-teal-500" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg></div>
+                        <h3 class="font-semibold text-lg text-teal-800">Fecha y Hora</h3>
+                        <p class="text-gray-600">Sábado, 13 de Septiembre, 2025<br>7:30 p.m.</p>
+                    </div>
+                    <div>
+                        <div class="bg-white p-4 rounded-full shadow-md mb-3 inline-block"><svg
+                                xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-teal-500" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg></div>
+                        <h3 class="font-semibold text-lg text-teal-800">Lugar</h3>
+                        <p class="text-gray-600">Salón de eventos Vivaldi<br>Circular 3ra #69 - 02, Medellín</p>
+                    </div>
+                    <div>
+                        <div class="bg-white p-4 rounded-full shadow-md mb-3 inline-block"><svg
+                                xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-teal-500" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg></div>
+                        <h3 class="font-semibold text-lg text-teal-800">Código de Vestir</h3>
+                        <p class="text-gray-600">Traje de cóctel / Guayabera<br><span
+                                class="font-semibold text-teal-600">Color sugerido: Turquesa</span></p>
+                    </div>
+                </div>
+                <div class="text-center mt-8">
+                    <a href="https://www.google.com/maps/search/?api=1&query=San+Agust%C3%ADn+Eventos+y+Turismo+Sala+de+Ventas%2C+Medell%C3%ADn"
+                        target="_blank"
+                        class="btn btn-main text-white font-bold py-3 px-8 rounded-full inline-block">¿Cómo llegar?</a>
+                </div>
+            </section>
+
+            <!-- Lluvia de Sobres Section -->
+            <section class="card p-8 md:p-10 rounded-2xl fade-in-section text-center relative z-10">
+                <div class="bg-white p-4 rounded-full shadow-md mb-4 inline-block"><svg
+                        xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-teal-500" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg></div>
+                <h2 class="font-dancing text-4xl text-teal-700 mb-2">Lluvia de Sobres</h2>
+                <p class="max-w-md mx-auto text-gray-600">Tu presencia es el mejor regalo, pero si deseas tener un
+                    detalle conmigo, puedes hacerlo en la tradicional lluvia de sobres.</p>
+            </section>
+
+
+            <!-- Gemini API Section -->
+            <section class="fade-in-section relative z-10">
+                <h2 class="font-dancing text-4xl md:text-5xl text-teal-700 mb-8 text-center">Un Toque Mágico para Ti
+                </h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="card p-6 rounded-2xl text-center border-teal-200">
+                        <h3 class="font-semibold text-lg mb-2 text-teal-700">✨ Generador de Mensajes</h3>
+                        <p class="text-sm mb-4">¿Buscas inspiración? La IA crea un mensaje especial para Danna.</p>
+                        <div id="messageResult"
+                            class="bg-teal-50/50 p-4 rounded-lg min-h-[100px] mb-4 text-sm whitespace-pre-wrap italic text-gray-600">
+                        </div>
+                        <button id="generateMessageBtn"
+                            class="btn btn-main text-white font-bold py-2 px-4 rounded-full w-full flex items-center justify-center">
+                            <span class="btn-text">Generar Mensaje</span>
+                            <div class="loader hidden ml-2"></div>
+                        </button>
+                        <button id="copyMessageBtn"
+                            class="hidden mt-2 bg-gray-200 text-gray-700 text-sm py-1 px-3 rounded-full w-full">Copiar
+                            Mensaje</button>
+                    </div>
+                    <div class="card p-6 rounded-2xl text-center border-teal-200">
+                        <h3 class="font-semibold text-lg mb-2 text-teal-700">✨ Sugerencias de Regalo</h3>
+                        <p class="text-sm mb-4">Encuentra el regalo perfecto con estas ideas temáticas.</p>
+                        <div id="giftResult"
+                            class="bg-teal-50/50 p-4 rounded-lg min-h-[100px] mb-4 text-sm text-gray-600"></div>
+                        <button id="generateGiftBtn"
+                            class="btn btn-main text-white font-bold py-2 px-4 rounded-full w-full flex items-center justify-center">
+                            <span class="btn-text">Ver Ideas de Regalos</span>
+                            <div class="loader hidden ml-2"></div>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RSVP Section -->
+            <section class="text-center fade-in-section relative z-10">
+                <div class="bg-teal-700 text-white p-10 md:p-16 rounded-2xl shadow-lg">
+                    <h2 class="font-dancing text-4xl md:text-5xl mb-4">Confirma tu Asistencia</h2>
+                    <p class="max-w-2xl mx-auto mb-8">Tu compañía es esencial para que esta noche sea perfecta. Por
+                        favor, confirma antes del 30 de Agosto de 2025.</p>
+                    <a href="https://wa.me/573015659286?text=Hola,%20confirmo%20mi%20asistencia%20a%20los%2015%20de%20Danna"
+                        target="_blank"
+                        class="btn bg-white text-teal-700 font-bold py-3 px-8 rounded-full inline-flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a2 2 0 01-2-2V10a2 2 0 012-2h8z" />
+                        </svg>
+                        Confirmar por WhatsApp
+                    </a>
+                </div>
+            </section>
+        </div>
+        <footer class="text-center py-10 relative">
+            <p class="font-dancing text-4xl text-teal-700">¡Te espero para crear olas de recuerdos!</p>
+            <p class="text-teal-800/80 mt-2">Con cariño, Danna</p>
+        </footer>
+    </main>
+
+    <script>
+        // --- Lógica para la Cuenta Regresiva ---
+        const countdownElement = document.getElementById('countdown');
+        if (countdownElement) {
+            const countDownDate = new Date("Sep 13, 2025 19:30:00").getTime();
+            const updateCountdown = () => {
+                const now = new Date().getTime();
+                const distance = countDownDate - now;
+                if (distance < 0) {
+                    countdownElement.innerHTML = '<div class="col-span-2 md:col-span-4 text-center text-2xl font-bold text-teal-600 bg-white/70 p-6 rounded-2xl shadow-lg">¡El gran día ha llegado!</div>';
+                    clearInterval(interval); return;
+                }
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                document.getElementById('days').innerText = String(days).padStart(2, '0');
+                document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+                document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+                document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+            };
+            const interval = setInterval(updateCountdown, 1000);
+            updateCountdown();
+        }
+
+        // --- Lógica para Animaciones al Desplazar ---
+        const sections = document.querySelectorAll('.fade-in-section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); } });
+        }, { threshold: 0.15 });
+        sections.forEach(section => { observer.observe(section); });
+
+        // --- Lógica para la API de Gemini ---
+        const generateMessageBtn = document.getElementById('generateMessageBtn');
+        const messageResult = document.getElementById('messageResult');
+        const copyMessageBtn = document.getElementById('copyMessageBtn');
+        const generateGiftBtn = document.getElementById('generateGiftBtn');
+        const giftResult = document.getElementById('giftResult');
+        const apiKey = "";
+
+        async function callGemini(prompt, button) {
+            const btnText = button.querySelector('.btn-text');
+            const loader = button.querySelector('.loader');
+            btnText.classList.add('hidden');
+            loader.classList.remove('hidden');
+            button.disabled = true;
+            try {
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                const payload = { contents: [{ role: "user", parts: [{ text: prompt }] }] };
+                const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                if (!response.ok) { throw new Error(`Error en la API: ${response.statusText}`); }
+                const result = await response.json();
+                if (result.candidates && result.candidates.length > 0) { return result.candidates[0].content.parts[0].text; }
+                else { return "No se pudo generar una respuesta. Inténtalo de nuevo."; }
+            } catch (error) {
+                console.error("Error al llamar a Gemini API:", error);
+                return "Ocurrió un error. Por favor, revisa la consola para más detalles.";
+            } finally {
+                btnText.classList.remove('hidden');
+                loader.classList.add('hidden');
+                button.disabled = false;
+            }
+        }
+
+        generateMessageBtn.addEventListener('click', async () => {
+            messageResult.textContent = 'Generando un mensaje especial...';
+            copyMessageBtn.classList.add('hidden');
+            const prompt = "Escribe un mensaje corto y emotivo para una tarjeta de 15 años para una chica llamada Danna. La temática de la fiesta es el mar y el color turquesa. El mensaje debe ser inspirador, hablando sobre los sueños, el futuro y la belleza de esta nueva etapa, como si fuera un océano de oportunidades. El tono debe ser cálido y personal.";
+            const generatedText = await callGemini(prompt, generateMessageBtn);
+            messageResult.textContent = generatedText;
+            copyMessageBtn.classList.remove('hidden');
+        });
+
+        copyMessageBtn.addEventListener('click', () => {
+            const textToCopy = messageResult.textContent;
+            const textArea = document.createElement('textarea');
+            textArea.value = textToCopy;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                copyMessageBtn.textContent = '¡Copiado!';
+                setTimeout(() => { copyMessageBtn.textContent = 'Copiar Mensaje'; }, 2000);
+            } catch (err) {
+                console.error('Error al copiar el texto: ', err);
+                copyMessageBtn.textContent = 'Error al copiar';
+            }
+            document.body.removeChild(textArea);
+        });
+
+        generateGiftBtn.addEventListener('click', async () => {
+            giftResult.textContent = 'Buscando ideas de regalos...';
+            const prompt = "Genera una lista de 5 ideas de regalos creativos y originales para una quinceañera llamada Danna, cuya fiesta tiene una temática del mar y el color turquesa. Las ideas deben ser adecuadas para una chica de 15 años. Formatea la respuesta como una lista con viñetas (usando '*' o '-').";
+            const generatedText = await callGemini(prompt, generateGiftBtn);
+            giftResult.innerHTML = generatedText.replace(/\* /g, '• ').replace(/-/g, '• ').replace(/\n/g, '<br>');
+        });
+
+        // Animación de las olas del footer
+        const parallax = document.querySelector('.parallax');
+        if (parallax) {
+            const uses = parallax.querySelectorAll('use');
+            function moveWaves(timestamp) {
+                uses.forEach((use, i) => {
+                    const x = parseFloat(use.getAttribute('x'));
+                    let newX = x - (i + 1) * 0.1; // Diferentes velocidades
+                    if (newX < -352) { // Reiniciar posición
+                        newX = 48;
+                    }
+                    use.setAttribute('x', newX);
+                });
+                requestAnimationFrame(moveWaves);
+            }
+            requestAnimationFrame(moveWaves);
+        }
+
+    </script>
+
+</body>
+
+</html>
